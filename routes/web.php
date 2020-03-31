@@ -12,7 +12,11 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', 'OrdersController@index');
 
-Route::get('/', function () {
-    return view('welcome');
+Route::prefix('orders')->group(function (){
+    Route::get('/', 'OrdersController@index');
+    Route::get('/{orderID}', 'OrdersController@order');
+    Route::post('/store','OrdersController@store');
 });
+
